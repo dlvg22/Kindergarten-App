@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\PopupWindowSCR.cs" />
+     <Compile Include="Assets\Script\Helper.cs" />
      <Compile Include="Assets\Script\LoginScript.cs" />
      <Compile Include="Assets\Script\MenuSCR.cs" />
      <Compile Include="Assets\Script\PlaySCR.cs" />
