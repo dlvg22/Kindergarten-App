@@ -12,25 +12,34 @@ public class MenuSCR : MonoBehaviour {
     public GameObject SettingsMenu;
     string name;
     string result ="";
-  
-   
+    string Kinder;
+    string user1;
     void Start() {
-        if (PlayerPrefs.HasKey(result))
+        
+       if (PlayerPrefs.HasKey(result))
         {
+            
            name = PlayerPrefs.GetString(result);
                   // CharImage[1].SetActive(true) ;
+           Debug.Log(name);
+          // Debug.Log(PlayerPrefs.GetString(result)); result = kinder0
           for (int a = 0; a != 4; a++)
             {
-                if (name == "Char Image"+ a)
+                
+              if (name == "Kinder"+a)
                 {
                     CharImage[a].SetActive(true) ;
-                    Debug.Log(CharImage[a]);
+                    Debug.Log(PlayerPrefs.GetString("user"+a));
+                  
                     
                 }
+
             }
+       
           //  CharImage[3].SetActive(true);
           //  Debug.Log(name);
         }
+      
    
     }
 
