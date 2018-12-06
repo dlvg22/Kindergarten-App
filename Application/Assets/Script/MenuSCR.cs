@@ -23,6 +23,7 @@ public class MenuSCR : MonoBehaviour {
                   // CharImage[1].SetActive(true) ;
            Debug.Log(name);
           // Debug.Log(PlayerPrefs.GetString(result)); result = kinder0
+		  //test 
           for (int a = 0; a != 4; a++)
             {
                 
