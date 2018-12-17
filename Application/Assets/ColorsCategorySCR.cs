@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class ColorsCategorySCR : MonoBehaviour {
 
 	// Use this for initialization
@@ -11,14 +12,16 @@ public class ColorsCategorySCR : MonoBehaviour {
     public GameObject[] questions;
     public GameObject[] right;
     int[] FinalValue=new int[9];
+    public GameObject ColorsCategory;
+    public GameObject ShapesCategory;
     int answer;
     int keyLog = 0;
     int[] questionsIndex;
-   
+    bool TimerLimit = false;
     bool loop = false;
     int[] PreChoice = new int[3];
  	void Start () {
-        
+
         
         int[] Positions = {62,-49,-159};
         int[] value ={0,1,2,3,4,5,6,7,8};
@@ -57,6 +60,8 @@ public class ColorsCategorySCR : MonoBehaviour {
                //remove previous Choices
              if (keyLog != 0)
              {
+                 
+          
                    questions[FinalValue[keyLog-1]].SetActive(false);
                  for (int y = 0; y != 3; y++)
                  {
@@ -65,14 +70,13 @@ public class ColorsCategorySCR : MonoBehaviour {
                          if (FINAL[y] != PreChoice[x])
                          {
                              choice[PreChoice[x]].SetActive(false);
-
-
                          }
                      }
 
                  }
 
              }
+             
              for (int z = 0; z != 3; z++)
              {
                  Vector3 Temp = choice[FinChoice[z]].transform.localPosition;
@@ -86,27 +90,48 @@ public class ColorsCategorySCR : MonoBehaviour {
           questions[FinalValue[keyLog]].SetActive(true);
           answer = FinalValue[keyLog];
           PreChoice = FINAL;
-       // StartCoroutine("LoseTime");
-         // Time.timeScale = 1;
+      
 	}
-   
-   /* IEnumerator LoseTime()
+
+    IEnumerator PicDelay()
+    {
+        yield return new WaitForSeconds(1);
+        Start();
+    }
+  
+  IEnumerator LoseTime()
     {
         while (true)
         {
-          //  yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);
             timeLeft--;
         }
-    }*/
+            
+    }
   
     void Update()
     {
-     /*   countdown.text = ("" + timeLeft);
+      
+      countdown.text = ("" + timeLeft);
         if (timeLeft <= 10)
         {
             countdown.color = Color.red;       
-        }*/
-      
+        }
+        if (timeLeft < 0)
+        {
+            ColorsCategory.SetActive(false);
+            ShapesCategory.SetActive(true);
+          //  Debug.Log("Done");
+           
+
+        }
+        if (keyLog == 9)
+        {
+            ColorsCategory.SetActive(false);
+            ShapesCategory.SetActive(true);
+            Debug.Log("Done");
+        }
+  
     }
     
     
@@ -119,7 +144,6 @@ public class ColorsCategorySCR : MonoBehaviour {
                 int r = Random.Range(t, array.Length);
                 array[t] = array[r];
                 array[r] = tmp;
-                // Debug.Log(tmp);
             }
             return array;
     }
@@ -134,7 +158,14 @@ public class ColorsCategorySCR : MonoBehaviour {
        {
            right[FinalValue[keyLog]].SetActive(true);
        }
-       Invoke("Start", 1f);
+       StartCoroutine("PicDelay");
+       if (TimerLimit == false)
+       {
+           StartCoroutine("LoseTime");
+           TimerLimit = true;
+       }
+    
+    
        keyLog++;
        
     
@@ -153,8 +184,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        {
            right[FinalValue[keyLog]].SetActive(true);
        }
-        Invoke("Start", 1f);
-      
+       StartCoroutine("PicDelay");
+       if (TimerLimit == false)
+       {
+           StartCoroutine("LoseTime");
+           TimerLimit = true;
+       }
+    
        keyLog++;
       
        
@@ -170,7 +206,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        {
            right[FinalValue[keyLog]].SetActive(true);
        }
-        Invoke("Start", 1f);
+       StartCoroutine("PicDelay");
+       if (TimerLimit == false)
+       {
+           StartCoroutine("LoseTime");
+           TimerLimit = true;
+       }
+    
        keyLog++;
       
 
@@ -186,7 +228,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        {
            right[FinalValue[keyLog]].SetActive(true);
        }
-       Invoke("Start", 1f);
+       StartCoroutine("PicDelay");
+       if (TimerLimit == false)
+       {
+           StartCoroutine("LoseTime");
+           TimerLimit = true;
+       }
+    
        keyLog++;
   
    }
@@ -200,7 +248,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        {
            right[FinalValue[keyLog]].SetActive(true);
        }
-       Invoke("Start", 1f);
+       StartCoroutine("PicDelay");
+       if (TimerLimit == false)
+       {
+           StartCoroutine("LoseTime");
+           TimerLimit = true;
+       }
+    
    
        keyLog++;
    
@@ -217,7 +271,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        {
            right[FinalValue[keyLog]].SetActive(true);
        }
-       Invoke("Start", 1f);
+       StartCoroutine("PicDelay");
+       if (TimerLimit == false)
+       {
+           StartCoroutine("LoseTime");
+           TimerLimit = true;
+       }
+    
     
        keyLog++;
      
@@ -238,7 +298,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        {
            right[FinalValue[keyLog]].SetActive(true);
        }
-       Invoke("Start", 1f);
+       StartCoroutine("PicDelay");
+       if (TimerLimit == false)
+       {
+           StartCoroutine("LoseTime");
+           TimerLimit = true;
+       }
+    
 
        keyLog++;
      
@@ -253,7 +319,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        {
            right[FinalValue[keyLog]].SetActive(true);
        }
-       Invoke("Start", 1f);
+       StartCoroutine("PicDelay");
+       if (TimerLimit == false)
+       {
+           StartCoroutine("LoseTime");
+           TimerLimit = true;
+       }
+    
       
     
        keyLog++;
@@ -269,7 +341,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        {
            right[FinalValue[keyLog]].SetActive(true);
        }
-       Invoke("Start", 1f);
+       StartCoroutine("PicDelay");
+       if (TimerLimit == false)
+       {
+           StartCoroutine("LoseTime");
+           TimerLimit = true;
+       }
+    
        keyLog++;
    }
 }
