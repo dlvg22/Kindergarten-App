@@ -1,83 +1,147 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ColorsCategorySCR : MonoBehaviour {
 
 	// Use this for initialization
+    public int timeLeft = 20; //Seconds Overall
+    public Text countdown; //UI Text Object
     public GameObject[] choice;
     public GameObject[] questions;
-    public GameObject[] right; 
+    public GameObject[] right;
+    int[] FinalValue=new int[9];
     int answer;
-	void Start () {
-        int[] Positions = {62,-49,-159};
-        int[] value ={1,2,3,4,5,6,7,8,9};
-        int[] key;
-        int index = 0;
-      value = shuffleChoice(value);
-      key = randomPos(Positions);
-        for(int a=0; a<3; a++)
-        {
-            Vector3 Temp = choice[value[a]].transform.localPosition;
-            Temp = new Vector3 (227, key[a],0);
-            choice[value[a]].SetActive(true);   
-            choice[value[a]].transform.localPosition = Temp;
-            
-            index = value[a];
-            Debug.Log(value[a]);
-        }
-        answer = index;
-        Vector3 Quest = questions[index].transform.position;
-        Quest = new Vector3(-251, -50, 0);
-        Debug.Log(index);
-        questions[index].transform.localPosition = Quest;
-        questions[index].SetActive(true);
-	}
-    
-    public int[] shuffleChoice(int[] array)
-
-      //shuffle Y position;
-    {
-        for (int t = 0; t < 8; t++)
-        {
-            int tmp = array[t];
-            int r = Random.Range(0, array.Length-1);
-            array[t] = array[r];
-            array[r] = tmp;
-            // Debug.Log(tmp);
-        }
-
-        return array;
-
-    }
-   public int[] randomPos(int[] array)
-
-       //shuffle Y position;
-    {
-        for (int t = 0; t <3; t++)
-        {
-            int tmp = array[t];
-            int r = Random.Range(t, array.Length);
-            array[t] = array[r];
-            array[r] = tmp;
-           // Debug.Log(tmp);
-        }
+    int keyLog = 0;
+    int[] questionsIndex;
    
-        return array;
+    bool loop = false;
+    int[] PreChoice = new int[3];
+ 	void Start () {
+        
+        
+        int[] Positions = {62,-49,-159};
+        int[] value ={0,1,2,3,4,5,6,7,8};
+        int[] value2 = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+        int[] ChoicesKey = new int[9];
+        int[] Choices = new int[9];
+        int[] test = new int[9];
+       List<int> FinChoice = new List<int>();
+       List<int> ConvertChoice;
+       int[] Var = new int[9];
+        int[] key;
+        int[] FINAL;
+    
+        int a = 0;
+  
+    
+        if (loop!=true)
+        {
+          FinalValue = randomPos(value);   // for choices to shuffle
+          loop = true;
+        }
+        Choices = randomPos(value2); //for position to shuffle
+        key = randomPos(Positions); // for choices position
+        FinChoice.Add(FinalValue[keyLog]); // add right answer
+        //Convert to string to remove right answer
+        ConvertChoice = new List<int>(Choices);
+        ConvertChoice.Remove(FinalValue[keyLog]);
+        ChoicesKey = ConvertChoice.ToArray();
+             while(a != 2){
+              FinChoice.Add(ChoicesKey[a]);
+              a++;
+             }
+       
+             FINAL = FinChoice.ToArray();
 
+               //remove previous Choices
+             if (keyLog != 0)
+             {
+                   questions[FinalValue[keyLog-1]].SetActive(false);
+                 for (int y = 0; y != 3; y++)
+                 {
+                     for (int x = 0; x != 3; x++)
+                     {
+                         if (FINAL[y] != PreChoice[x])
+                         {
+                             choice[PreChoice[x]].SetActive(false);
+
+
+                         }
+                     }
+
+                 }
+
+             }
+             for (int z = 0; z != 3; z++)
+             {
+                 Vector3 Temp = choice[FinChoice[z]].transform.localPosition;
+                 Temp = new Vector3(227, key[z], 0);
+                 choice[FinChoice[z]].SetActive(true);
+                 choice[FinChoice[z]].transform.localPosition = Temp;
+             }
+          Vector3 Quest = questions[FinalValue[keyLog]].transform.position;
+          Quest = new Vector3(-251, -50, 0);
+          questions[FinalValue[keyLog]].transform.localPosition = Quest;
+          questions[FinalValue[keyLog]].SetActive(true);
+          answer = FinalValue[keyLog];
+          PreChoice = FINAL;
+       // StartCoroutine("LoseTime");
+         // Time.timeScale = 1;
+	}
+   
+   /* IEnumerator LoseTime()
+    {
+        while (true)
+        {
+          //  yield return new WaitForSeconds(1);
+            timeLeft--;
+        }
+    }*/
+  
+    void Update()
+    {
+     /*   countdown.text = ("" + timeLeft);
+        if (timeLeft <= 10)
+        {
+            countdown.color = Color.red;       
+        }*/
+      
+    }
+    
+    
+ 
+   public int[] randomPos(int[] array)
+    {
+           for (int t = 0; t < array.Length; t++)
+            {
+                int tmp = array[t];
+                int r = Random.Range(t, array.Length);
+                array[t] = array[r];
+                array[r] = tmp;
+                // Debug.Log(tmp);
+            }
+            return array;
     }
    public void ChoiceOne()
    {
+     
        if (answer == 0)
        {
            right[0].SetActive(true);
        }
        else
        {
-           Debug.Log("FUCKIT");
+           right[FinalValue[keyLog]].SetActive(true);
        }
-       questions[0].SetActive(false);
-       Start();
+       Invoke("Start", 1f);
+       keyLog++;
+       
+    
+      
+
+
+
    }
    public void ChoiceTwo()
    {
@@ -87,25 +151,30 @@ public class ColorsCategorySCR : MonoBehaviour {
        }
        else
        {
-           Debug.Log("FUCKIT");
+           right[FinalValue[keyLog]].SetActive(true);
        }
-       Start();
-       questions[1].SetActive(false);
-
+        Invoke("Start", 1f);
+      
+       keyLog++;
+      
+       
+      
    }
    public void ChoiceThree()
    {
        if (answer == 2)
        {
-           right[2].SetActive(true);
+           right[FinalValue[keyLog]].SetActive(true);
        }
        else
        {
-           Debug.Log("FUCKIT");
+           right[FinalValue[keyLog]].SetActive(true);
        }
+        Invoke("Start", 1f);
+       keyLog++;
+      
 
-       Start();
-       questions[2].SetActive(false);
+    
    }
    public void ChoiceFour()
    {
@@ -115,11 +184,11 @@ public class ColorsCategorySCR : MonoBehaviour {
        }
        else
        {
-           Debug.Log("FUCKIT");
+           right[FinalValue[keyLog]].SetActive(true);
        }
-       Start();
-       questions[3].SetActive(false);
-
+       Invoke("Start", 1f);
+       keyLog++;
+  
    }
    public void ChoiceFive()
    {
@@ -129,10 +198,14 @@ public class ColorsCategorySCR : MonoBehaviour {
        }
        else
        {
-           Debug.Log("FUCKIT");
+           right[FinalValue[keyLog]].SetActive(true);
        }
-       Start();
-       questions[4].SetActive(false);
+       Invoke("Start", 1f);
+   
+       keyLog++;
+   
+
+     
    }
    public void ChoiceSix()
    {
@@ -142,10 +215,18 @@ public class ColorsCategorySCR : MonoBehaviour {
        }
        else
        {
-           Debug.Log("FUCKIT");
+           right[FinalValue[keyLog]].SetActive(true);
        }
-       Start();
-       questions[5].SetActive(false);
+       Invoke("Start", 1f);
+    
+       keyLog++;
+     
+     
+
+     
+ 
+   
+ 
    }
    public void ChoiceSeven()
    {
@@ -155,23 +236,28 @@ public class ColorsCategorySCR : MonoBehaviour {
        }
        else
        {
-           Debug.Log("FUCKIT");
+           right[FinalValue[keyLog]].SetActive(true);
        }
-       Start();
-       questions[6].SetActive(false);
+       Invoke("Start", 1f);
+
+       keyLog++;
+     
    }
    public void ChoiceEight()
    {
        if (answer == 7)
        {
-           right[7].SetActive(true);
+           right[FinalValue[keyLog]].SetActive(true);
        }
        else
        {
-           Debug.Log("FUCKIT");
+           right[FinalValue[keyLog]].SetActive(true);
        }
-       Start();
-       questions[7].SetActive(false);
+       Invoke("Start", 1f);
+      
+    
+       keyLog++;
+      
    }
    public void ChoiceNine()
    {
@@ -181,15 +267,9 @@ public class ColorsCategorySCR : MonoBehaviour {
        }
        else
        {
-           Debug.Log("FUCKIT");
+           right[FinalValue[keyLog]].SetActive(true);
        }
-       Start();
-       questions[8].SetActive(false);
+       Invoke("Start", 1f);
+       keyLog++;
    }
-
-	
-	// Update is called once per frame
-	void Update () {
-      
-	}
 }
