@@ -62,6 +62,7 @@
      <Compile Include="Assets\Script\MenuSCR.cs" />
      <Compile Include="Assets\Script\PlaySCR.cs" />
      <Compile Include="Assets\Script\ScrollSnapRect.cs" />
+     <Compile Include="Assets\ShapesCategorySCR.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
