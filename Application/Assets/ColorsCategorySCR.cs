@@ -11,18 +11,31 @@ public class ColorsCategorySCR : MonoBehaviour {
     public GameObject[] choice;
     public GameObject[] questions;
     public GameObject[] right;
+    public GameObject check;
+    public GameObject wrong;
+    public GameObject[] Stars;
     int[] FinalValue=new int[9];
     public GameObject ColorsCategory;
     public GameObject ShapesCategory;
+    public GameObject ScoreWindow;
+    int count = 0;
+    int number = 0;
     int answer;
     int keyLog = 0;
+    int positionY = 50;
+    int positionX = -150;
     int[] questionsIndex;
     bool TimerLimit = false;
     bool loop = false;
+    bool myAnswer;
+    bool wAnswer;
     int[] PreChoice = new int[3];
  	void Start () {
 
-        
+        myAnswer = false;
+        check.SetActive(false);
+        wrong.SetActive(false);
+        wAnswer = false;
         int[] Positions = {62,-49,-159};
         int[] value ={0,1,2,3,4,5,6,7,8};
         int[] value2 = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
@@ -111,6 +124,7 @@ public class ColorsCategorySCR : MonoBehaviour {
   
     void Update()
     {
+     
       
       countdown.text = ("" + timeLeft);
         if (timeLeft <= 10)
@@ -119,17 +133,39 @@ public class ColorsCategorySCR : MonoBehaviour {
         }
         if (timeLeft < 0)
         {
-            ColorsCategory.SetActive(false);
-            ShapesCategory.SetActive(true);
-          //  Debug.Log("Done");
+            ScoreWindow.SetActive(true);
+           
+          
            
 
         }
         if (keyLog == 9)
         {
-            ColorsCategory.SetActive(false);
-            ShapesCategory.SetActive(true);
-            Debug.Log("Done");
+            ScoreWindow.SetActive(true);
+         
+          
+          
+        }
+        if (myAnswer == true)
+        {
+         
+            Vector3 tempCheck = check.transform.localPosition;
+            tempCheck = new Vector3(-228,-50, 0);
+            check.SetActive(true);
+            check.transform.localPosition = tempCheck;
+        }
+        if (wAnswer == true)
+        {
+            
+            Vector3 tempWrong = wrong.transform.localPosition;
+            tempWrong = new Vector3(-228, -50, 0);
+            wrong.SetActive(true);
+            wrong.transform.localPosition = tempWrong;
+        }
+       while (number != count)
+        {
+            Stars[number].SetActive(true);
+            number++;
         }
   
     }
@@ -149,14 +185,18 @@ public class ColorsCategorySCR : MonoBehaviour {
     }
    public void ChoiceOne()
    {
+
      
        if (answer == 0)
        {
            right[0].SetActive(true);
+           myAnswer = true;
+           count++;
        }
        else
        {
            right[FinalValue[keyLog]].SetActive(true);
+           wAnswer = true;
        }
        StartCoroutine("PicDelay");
        if (TimerLimit == false)
@@ -179,10 +219,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        if (answer == 1)
        {
            right[1].SetActive(true);
+           myAnswer = true;
+           count++;
        }
        else
        {
            right[FinalValue[keyLog]].SetActive(true);
+           wAnswer = true;
        }
        StartCoroutine("PicDelay");
        if (TimerLimit == false)
@@ -201,10 +244,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        if (answer == 2)
        {
            right[FinalValue[keyLog]].SetActive(true);
+           myAnswer = true;
+           count++;
        }
        else
        {
            right[FinalValue[keyLog]].SetActive(true);
+           wAnswer = true;
        }
        StartCoroutine("PicDelay");
        if (TimerLimit == false)
@@ -223,10 +269,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        if (answer == 3)
        {
            right[3].SetActive(true);
+           myAnswer = true;
+           count++;
        }
        else
        {
            right[FinalValue[keyLog]].SetActive(true);
+           wAnswer = true;
        }
        StartCoroutine("PicDelay");
        if (TimerLimit == false)
@@ -243,10 +292,14 @@ public class ColorsCategorySCR : MonoBehaviour {
        if (answer == 4)
        {
            right[4].SetActive(true);
+           myAnswer = true;
+           count++;
        }
        else
        {
            right[FinalValue[keyLog]].SetActive(true);
+           wAnswer = true;
+         
        }
        StartCoroutine("PicDelay");
        if (TimerLimit == false)
@@ -266,10 +319,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        if (answer == 5)
        {
            right[5].SetActive(true);
+           myAnswer = true;
+           count++;
        }
        else
        {
            right[FinalValue[keyLog]].SetActive(true);
+           wAnswer = true;
        }
        StartCoroutine("PicDelay");
        if (TimerLimit == false)
@@ -293,10 +349,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        if (answer == 6)
        {
            right[6].SetActive(true);
+           myAnswer = true;
+           count++;
        }
        else
        {
            right[FinalValue[keyLog]].SetActive(true);
+           wAnswer = true;
        }
        StartCoroutine("PicDelay");
        if (TimerLimit == false)
@@ -314,10 +373,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        if (answer == 7)
        {
            right[FinalValue[keyLog]].SetActive(true);
+           myAnswer = true;
+           count++;
        }
        else
        {
            right[FinalValue[keyLog]].SetActive(true);
+           wAnswer = true;
        }
        StartCoroutine("PicDelay");
        if (TimerLimit == false)
@@ -336,10 +398,13 @@ public class ColorsCategorySCR : MonoBehaviour {
        if (answer == 8)
        {
            right[8].SetActive(true);
+           myAnswer = true;
+           count++;
        }
        else
        {
            right[FinalValue[keyLog]].SetActive(true);
+           wAnswer = true;
        }
        StartCoroutine("PicDelay");
        if (TimerLimit == false)
