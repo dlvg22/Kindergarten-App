@@ -58,7 +58,9 @@ public class ColorsCategorySCR : MonoBehaviour {
         }
         Choices = randomPos(value2); //for position to shuffle
         key = randomPos(Positions); // for choices position
-        FinChoice.Add(FinalValue[keyLog]); // add right answer
+      
+            FinChoice.Add(FinalValue[keyLog]);
+       // add right answer
         //Convert to string to remove right answer
         ConvertChoice = new List<int>(Choices);
         ConvertChoice.Remove(FinalValue[keyLog]);
@@ -109,7 +111,11 @@ public class ColorsCategorySCR : MonoBehaviour {
     IEnumerator PicDelay()
     {
         yield return new WaitForSeconds(1);
-        Start();
+        if (keyLog != 9)
+        {
+            Start();
+        }
+       
     }
   
   IEnumerator LoseTime()
@@ -134,17 +140,10 @@ public class ColorsCategorySCR : MonoBehaviour {
         if (timeLeft < 0)
         {
             ScoreWindow.SetActive(true);
-           
-          
-           
-
         }
         if (keyLog == 9)
         {
             ScoreWindow.SetActive(true);
-         
-          
-          
         }
         if (myAnswer == true)
         {
@@ -169,8 +168,12 @@ public class ColorsCategorySCR : MonoBehaviour {
         }
   
     }
-    
-    
+
+    public void next()
+    {
+        ColorsCategory.SetActive(false);
+        ShapesCategory.SetActive(true);
+    }    
  
    public int[] randomPos(int[] array)
     {
@@ -198,7 +201,10 @@ public class ColorsCategorySCR : MonoBehaviour {
            right[FinalValue[keyLog]].SetActive(true);
            wAnswer = true;
        }
-       StartCoroutine("PicDelay");
+     
+           StartCoroutine("PicDelay");
+       
+    
        if (TimerLimit == false)
        {
            StartCoroutine("LoseTime");
@@ -227,7 +233,9 @@ public class ColorsCategorySCR : MonoBehaviour {
            right[FinalValue[keyLog]].SetActive(true);
            wAnswer = true;
        }
-       StartCoroutine("PicDelay");
+       
+           StartCoroutine("PicDelay");
+     
        if (TimerLimit == false)
        {
            StartCoroutine("LoseTime");
@@ -252,7 +260,9 @@ public class ColorsCategorySCR : MonoBehaviour {
            right[FinalValue[keyLog]].SetActive(true);
            wAnswer = true;
        }
-       StartCoroutine("PicDelay");
+      
+           StartCoroutine("PicDelay");
+    
        if (TimerLimit == false)
        {
            StartCoroutine("LoseTime");
@@ -277,7 +287,9 @@ public class ColorsCategorySCR : MonoBehaviour {
            right[FinalValue[keyLog]].SetActive(true);
            wAnswer = true;
        }
-       StartCoroutine("PicDelay");
+      
+           StartCoroutine("PicDelay");
+      
        if (TimerLimit == false)
        {
            StartCoroutine("LoseTime");
@@ -301,7 +313,9 @@ public class ColorsCategorySCR : MonoBehaviour {
            wAnswer = true;
          
        }
-       StartCoroutine("PicDelay");
+      
+           StartCoroutine("PicDelay");
+      
        if (TimerLimit == false)
        {
            StartCoroutine("LoseTime");
@@ -327,22 +341,15 @@ public class ColorsCategorySCR : MonoBehaviour {
            right[FinalValue[keyLog]].SetActive(true);
            wAnswer = true;
        }
-       StartCoroutine("PicDelay");
+      
+           StartCoroutine("PicDelay");
+      
        if (TimerLimit == false)
        {
            StartCoroutine("LoseTime");
            TimerLimit = true;
        }
-    
-    
        keyLog++;
-     
-     
-
-     
- 
-   
- 
    }
    public void ChoiceSeven()
    {
@@ -357,7 +364,9 @@ public class ColorsCategorySCR : MonoBehaviour {
            right[FinalValue[keyLog]].SetActive(true);
            wAnswer = true;
        }
-       StartCoroutine("PicDelay");
+      
+           StartCoroutine("PicDelay");
+      
        if (TimerLimit == false)
        {
            StartCoroutine("LoseTime");
@@ -381,7 +390,9 @@ public class ColorsCategorySCR : MonoBehaviour {
            right[FinalValue[keyLog]].SetActive(true);
            wAnswer = true;
        }
-       StartCoroutine("PicDelay");
+      
+           StartCoroutine("PicDelay");
+       
        if (TimerLimit == false)
        {
            StartCoroutine("LoseTime");
@@ -406,7 +417,9 @@ public class ColorsCategorySCR : MonoBehaviour {
            right[FinalValue[keyLog]].SetActive(true);
            wAnswer = true;
        }
-       StartCoroutine("PicDelay");
+     
+           StartCoroutine("PicDelay");
+   
        if (TimerLimit == false)
        {
            StartCoroutine("LoseTime");
