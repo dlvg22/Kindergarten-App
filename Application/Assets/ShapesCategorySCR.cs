@@ -12,7 +12,7 @@ public class ShapesCategorySCR : MonoBehaviour {
     public GameObject[] Stars;
     public GameObject ScoreWindow;
     public GameObject ShapesCategory;
-    public GameObject PatternsCategory;
+    public GameObject SizesCategory;
     int Score;
     int answer;
     int keyLog = 0;
@@ -198,11 +198,11 @@ public class ShapesCategorySCR : MonoBehaviour {
     public void next()
     {
         ShapesCategory.SetActive(false);
-        PatternsCategory.SetActive(true);
+        SizesCategory.SetActive(true);
     }
 	// Update is called once per frame
 	void Update () {
-        /*while (number != Score)
+       while (number != Score)
         {
             Stars[number].SetActive(true);
             number++;
@@ -211,6 +211,6 @@ public class ShapesCategorySCR : MonoBehaviour {
         {
             ScoreWindow.SetActive(true);
             Debug.Log("scoreshow");
-        }*/
+        }
 	}
 }
