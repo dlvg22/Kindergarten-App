@@ -56,6 +56,7 @@
      <Compile Include="Assets\ColorsCategorySCR.cs" />
      <Compile Include="Assets\Library.cs" />
      <Compile Include="Assets\LoginMenuUI.cs" />
+     <Compile Include="Assets\PatternsCategorySCR.cs" />
      <Compile Include="Assets\PopupWindowSCR.cs" />
      <Compile Include="Assets\Script\Helper.cs" />
      <Compile Include="Assets\Script\LoginScript.cs" />
