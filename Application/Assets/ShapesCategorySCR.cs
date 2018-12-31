@@ -15,6 +15,7 @@ public class ShapesCategorySCR : MonoBehaviour {
     public GameObject SizesCategory;
     int Score;
     int answer;
+    int TotalScore, current;
     int keyLog = 0;
     int number = 0;
     bool Quest1 = false;
@@ -104,17 +105,12 @@ public class ShapesCategorySCR : MonoBehaviour {
         if (answer == 0)
         {
             Score++;
-         
-            Debug.Log("TRUE");
+     
         }
         if (keyLog != 5) {
             Start();
         }
-        else
-        {
-            Debug.Log("done");
-        }
-       
+   
      
 
     }
@@ -124,17 +120,13 @@ public class ShapesCategorySCR : MonoBehaviour {
         if (answer == 1)
         {
             Score++;
-        
-            Debug.Log("TRUE");
+       
         }
         if (keyLog != 5)
         {
             Start();
         }
-        else
-        {
-            Debug.Log("done");
-        }
+      
        
      
     }
@@ -144,17 +136,13 @@ public class ShapesCategorySCR : MonoBehaviour {
         if (answer == 2)
         {
             Score++;
-          
-            Debug.Log("TRUE");
+    
         }
         if (keyLog != 5)
         {
             Start();
         }
-        else
-        {
-            Debug.Log("done");
-        }
+      
       
     }
     public void SquareBTNS()
@@ -163,18 +151,13 @@ public class ShapesCategorySCR : MonoBehaviour {
         if (answer == 3)
         {
             Score++;
-         
-            Debug.Log("TRUE");
+      
         }
         if (keyLog != 5)
         {
             Start();
         }
-        else
-        {
-            Debug.Log("done");
-        }
-     
+    
     }
     public void TriangleBTNS()
     {
@@ -183,16 +166,13 @@ public class ShapesCategorySCR : MonoBehaviour {
         {
             Score++;
         
-            Debug.Log("TRUE");
+      
         }
         if (keyLog != 5)
         {
             Start();
         }
-        else
-        {
-            Debug.Log("done");
-        }
+      
     
     }
     public void next()
@@ -202,15 +182,18 @@ public class ShapesCategorySCR : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-       while (number != Score)
-        {
-            Stars[number].SetActive(true);
-            number++;
-        }
+     
         if (keyLog == 5)
         {
+            while (number != Score * 2)
+            {
+                Stars[number].SetActive(true);
+                number++;
+            }
             ScoreWindow.SetActive(true);
-            Debug.Log("scoreshow");
+            current = PlayerPrefs.GetInt("TotalScore");
+            TotalScore = (Score*2) + current;
+            PlayerPrefs.SetInt("TotalScore", TotalScore);
         }
 	}
 }

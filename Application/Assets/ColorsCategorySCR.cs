@@ -25,6 +25,7 @@ public class ColorsCategorySCR : MonoBehaviour {
     int positionY = 50;
     int positionX = -150;
     int[] questionsIndex;
+    int TotalScore, current;
     bool TimerLimit = false;
     bool loop = false;
     bool myAnswer;
@@ -140,10 +141,16 @@ public class ColorsCategorySCR : MonoBehaviour {
         if (timeLeft < 0)
         {
             ScoreWindow.SetActive(true);
+         
+          
+            PlayerPrefs.SetInt("TotalScore", count);
+
         }
         if (keyLog == 9)
         {
             ScoreWindow.SetActive(true);
+  
+            PlayerPrefs.SetInt("TotalScore", count);
         }
         if (myAnswer == true)
         {

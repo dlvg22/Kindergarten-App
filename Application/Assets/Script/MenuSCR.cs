@@ -19,26 +19,20 @@ public class MenuSCR : MonoBehaviour {
        if (PlayerPrefs.HasKey(result))
         {
             
-           name = PlayerPrefs.GetString(result);
-                  // CharImage[1].SetActive(true) ;
-           Debug.Log(name);
-          // Debug.Log(PlayerPrefs.GetString(result)); result = kinder0
-		  //test 
+        name = PlayerPrefs.GetString(result);
+        Debug.Log(name);
+     
           for (int a = 0; a != 4; a++)
             {
                 
               if (name == "Kinder"+a)
                 {
-                    CharImage[a].SetActive(true) ;
-                    Debug.Log(PlayerPrefs.GetString("user"+a));
-                  
-                    
+                    CharImage[a].SetActive(true);
                 }
 
             }
        
-          //  CharImage[3].SetActive(true);
-          //  Debug.Log(name);
+     
         }
       
    

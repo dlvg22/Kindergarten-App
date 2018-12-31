@@ -12,6 +12,7 @@ public class SizesCategorySCR : MonoBehaviour {
     public GameObject SizesCategory;
     public GameObject SetsCategory;
     public GameObject ScoreWindow;
+    int TotalScore, current;
     int[] Indexes = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     int[] myIndex = { -320, 0, 320 };
     int myKey;
@@ -59,7 +60,10 @@ public class SizesCategorySCR : MonoBehaviour {
             ScoreWindow.SetActive(true);
         
             FinTotal = total / 3;
-            Debug.Log(FinTotal);
+    
+            current = PlayerPrefs.GetInt("TotalScore");
+            TotalScore = FinTotal + current;
+            PlayerPrefs.SetInt("TotalScore", TotalScore);
         }
         while (number != FinTotal)
         {

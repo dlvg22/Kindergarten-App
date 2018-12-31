@@ -15797,6 +15797,11 @@ MonoBehaviour:
   - {fileID: 1294702240}
   - {fileID: 1165852748}
   - {fileID: 1679416891}
+  - {fileID: 2058223908}
+  - {fileID: 2057197571}
+  - {fileID: 1899630563}
+  - {fileID: 429973811}
+  - {fileID: 663021186}
   ScoreWindow: {fileID: 568246578}
   ShapesCategory: {fileID: 888634965}
   SizesCategory: {fileID: 1540689159}
