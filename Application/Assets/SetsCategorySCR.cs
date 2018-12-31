@@ -17,6 +17,7 @@ public class SetsCategorySCR : MonoBehaviour {
     int[] Position = { 1, 2 };
     int count = 0;
     int number = 0;
+    int TotalScore, current;
     int answer;
     int keyLog = 0;
    string setAnswer;
@@ -199,6 +200,9 @@ public class SetsCategorySCR : MonoBehaviour {
         if (keyLog == 5)
         {
             ScoreWindow.SetActive(true);
+            current = PlayerPrefs.GetInt("TotalScore");
+            TotalScore = score + current;
+            PlayerPrefs.SetInt("TotalScore", TotalScore);
         }
         while (number != score*2)
         {

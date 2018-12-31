@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PatternsCategorySCR : MonoBehaviour {
     public GameObject[] Animals;
     public GameObject[] fruits;
@@ -9,14 +9,17 @@ public class PatternsCategorySCR : MonoBehaviour {
     public GameObject[] Stars;
     public GameObject[] questions;
     public GameObject PatternsCategory;
-    
+    int TotalScore;
     public GameObject ScoreWindow;
     int keyLog=0;
     int number=0;
+    int current = 0;
     int score=0;
     int Score=0;
+   
     bool answer = false;
     int[] index = { 0, 1, 2, 3, 4 };
+    string result = "";
 	// Use this for initialization
 	void Start () {
         if (keyLog == 0)
@@ -39,9 +42,15 @@ public class PatternsCategorySCR : MonoBehaviour {
 	void Update () {
         if (keyLog == 5)
         {
-            ScoreWindow.SetActive(true);
+           ScoreWindow.SetActive(true);
+           PlayerPrefs.SetString(PlayerPrefs.GetString(result), "done");
+           current= PlayerPrefs.GetInt("TotalScore");
+           TotalScore = (Score*2) + current;
+           TotalScore = TotalScore / 5;
+         PlayerPrefs.SetInt("TotalScore",TotalScore);
+       //  Debug.Log(current);
         }
-        while (number != Score * 2)
+        while (number != TotalScore)
         {
             Stars[number].SetActive(true);
             number++;
@@ -49,7 +58,7 @@ public class PatternsCategorySCR : MonoBehaviour {
 	}
     public void next()
     {
-        PatternsCategory.SetActive(false);
+        SceneManager.LoadScene("Main Menu");
     }
     public void YesBTN()
     {
@@ -69,11 +78,9 @@ public class PatternsCategorySCR : MonoBehaviour {
     {
         questions[index[keyLog]].SetActive(false);
         keyLog++;
-        
         if (answer == false)
         {
             Score++;
-           
         }
         if (keyLog != 5)
         {
