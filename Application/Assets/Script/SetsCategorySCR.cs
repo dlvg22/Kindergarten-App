@@ -13,6 +13,9 @@ public class SetsCategorySCR : MonoBehaviour {
     public GameObject SetsCategory;
     public GameObject PatternsCategory;
     public GameObject ScoreWindow;
+    public AudioSource SoundFx;
+    public AudioClip CheckTone;
+    public AudioClip WrongTone;
     int[] Quest = { 0, 1 };
     int[] Position = { 1, 2 };
     int count = 0;
@@ -182,9 +185,14 @@ public class SetsCategorySCR : MonoBehaviour {
         if (setAnswer == "set1")
         {
             score++;
-            
+
+            SoundFx.PlayOneShot(CheckTone);
         }
-     
+        else
+        {
+            SoundFx.PlayOneShot(WrongTone);
+        }
+
         if (keyLog != 5)
         {
             Start();
@@ -204,9 +212,14 @@ public class SetsCategorySCR : MonoBehaviour {
         if (setAnswer == "set2")
         {
             score++;
-           
+
+            SoundFx.PlayOneShot(CheckTone);
         }
-      
+        else
+        {
+            SoundFx.PlayOneShot(WrongTone);
+        }
+
         if (keyLog != 5)
         {
             Start();

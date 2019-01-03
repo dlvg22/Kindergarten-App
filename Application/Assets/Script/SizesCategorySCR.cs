@@ -12,6 +12,9 @@ public class SizesCategorySCR : MonoBehaviour {
     public GameObject SizesCategory;
     public GameObject SetsCategory;
     public GameObject ScoreWindow;
+    public AudioSource SoundFx;
+    public AudioClip CheckTone;
+    public AudioClip WrongTone;
     int TotalScore, current;
     int[] Indexes = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     int[] myIndex = { -320, 0, 320 };
@@ -115,6 +118,11 @@ public class SizesCategorySCR : MonoBehaviour {
         if (myKey == 0)
         {
             total++;
+
+            SoundFx.PlayOneShot(CheckTone);
+        }
+        else {
+            SoundFx.PlayOneShot(WrongTone);
         }
         myKey++;
         if (myKey == 3)
@@ -142,6 +150,11 @@ public class SizesCategorySCR : MonoBehaviour {
         if (myKey == 1)
         {
             total++;
+            SoundFx.PlayOneShot(CheckTone);
+        }
+        else
+        {
+            SoundFx.PlayOneShot(WrongTone);
         }
         myKey++;
         if (myKey == 3)
@@ -169,6 +182,11 @@ public class SizesCategorySCR : MonoBehaviour {
         if (myKey == 2)
         {
             total++;
+            SoundFx.PlayOneShot(CheckTone);
+        }
+        else
+        {
+            SoundFx.PlayOneShot(WrongTone);
         }
         myKey++;
         if (myKey == 3)

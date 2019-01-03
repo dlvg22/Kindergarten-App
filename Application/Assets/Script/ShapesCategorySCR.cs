@@ -128,7 +128,12 @@ public class ShapesCategorySCR : MonoBehaviour {
         if (answer == 0)
         {
             Score++;
-      
+
+            SoundFx.PlayOneShot(CheckTone);
+
+        }
+        else {
+            SoundFx.PlayOneShot(WrongTone);
         }
         if (keyLog != 5) {
             Start();
@@ -155,8 +160,12 @@ public class ShapesCategorySCR : MonoBehaviour {
         if (answer == 1)
         {
             Score++;
-       
-       
+
+            SoundFx.PlayOneShot(CheckTone);
+        }
+        else
+        {
+            SoundFx.PlayOneShot(WrongTone);
         }
         if (keyLog != 5)
         {
@@ -186,7 +195,12 @@ public class ShapesCategorySCR : MonoBehaviour {
         if (answer == 2)
         {
             Score++;
-       
+
+            SoundFx.PlayOneShot(CheckTone);
+        }
+        else
+        {
+            SoundFx.PlayOneShot(WrongTone);
         }
         if (keyLog != 5)
         {
@@ -215,7 +229,12 @@ public class ShapesCategorySCR : MonoBehaviour {
         if (answer == 3)
         {
             Score++;
- ;
+
+            SoundFx.PlayOneShot(CheckTone);
+        }
+        else
+        {
+            SoundFx.PlayOneShot(WrongTone);
         }
         if (keyLog != 5)
         {
@@ -244,6 +263,12 @@ public class ShapesCategorySCR : MonoBehaviour {
         if (answer == 4)
         {
             Score++;
+
+            SoundFx.PlayOneShot(CheckTone);
+        }
+        else
+        {
+            SoundFx.PlayOneShot(WrongTone);
         }
         if (keyLog != 5)
         {
