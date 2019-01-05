@@ -11,6 +11,7 @@ public class ColorsCategorySCR : MonoBehaviour {
     public GameObject[] choice;
     public GameObject[] questions;
     public GameObject[] right;
+    public Button QuestionAudio;
     public GameObject check;
     public GameObject wrong;
     public GameObject[] Stars;
@@ -21,6 +22,7 @@ public class ColorsCategorySCR : MonoBehaviour {
     public AudioSource SoundFx;
     public AudioClip CheckTone;
     public AudioClip WrongTone;
+    public AudioClip QuestionColor;
     int count = 0;
     int number = 0;
     int answer;
@@ -42,7 +44,8 @@ public class ColorsCategorySCR : MonoBehaviour {
         check.SetActive(false);
         wrong.SetActive(false);
         wAnswer = false;
-     
+        QuestionAudio = GameObject.Find("QuestionAudio").GetComponent<Button>();
+
         int[] Positions = {62,-49,-159};
         int[] value = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         int[] value2 = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }; 
@@ -113,7 +116,9 @@ public class ColorsCategorySCR : MonoBehaviour {
           questions[FinalValue[keyLog]].SetActive(true);
           answer = FinalValue[keyLog];
           PreChoice = FINAL;
-      
+
+        
+        QuestionAudio.onClick.AddListener(() => questionButton());
 	}
 
     IEnumerator PicDelay()
@@ -205,6 +210,12 @@ public class ColorsCategorySCR : MonoBehaviour {
             }
             return array;
     }
+
+    public void questionButton()
+    {
+        SoundFx.PlayOneShot(QuestionColor);
+    }
+
    public void ChoiceOne()
    {
 

@@ -15,6 +15,8 @@ public class SizesCategorySCR : MonoBehaviour {
     public AudioSource SoundFx;
     public AudioClip CheckTone;
     public AudioClip WrongTone;
+    public Button QuestionAudio;
+    public AudioClip QuestionSizes;
     int TotalScore, current;
     int[] Indexes = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     int[] myIndex = { -320, 0, 320 };
@@ -29,6 +31,8 @@ public class SizesCategorySCR : MonoBehaviour {
    public int timeLeft = 20; //Seconds Overall
     public Text countdown; //UI Text Object
 	void Start () {
+        QuestionAudio = GameObject.Find("QuestionAudio").GetComponent<Button>();
+
         if (keyLog <= 9)
         {
             myKey = 0;
@@ -61,7 +65,9 @@ public class SizesCategorySCR : MonoBehaviour {
             Biggest[Indexes[keyLog]].transform.localPosition = Temp3;
 
         }
-	}
+
+        QuestionAudio.onClick.AddListener(() => questionButton());
+    }
 
     IEnumerator LoseTime()  //Timer Function
     {
@@ -107,7 +113,13 @@ public class SizesCategorySCR : MonoBehaviour {
             PlayerPrefs.SetInt("TotalScore", TotalScore);
             PlayerPrefs.SetInt(PlayerPrefs.GetString(result) + " Sizes", FinTotal);
        
-    }    
+    }
+
+    public void questionButton()
+    {
+        SoundFx.PlayOneShot(QuestionSizes);
+    }
+
     public void SmallBTN()
     {
         Vector3 Sm = Small[Indexes[keyLog]].transform.localPosition;

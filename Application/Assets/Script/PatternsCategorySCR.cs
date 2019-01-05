@@ -9,6 +9,8 @@ public class PatternsCategorySCR : MonoBehaviour {
     public GameObject[] category;
     public GameObject[] Stars;
     public GameObject[] questions;
+    public Button QuestionAudio;
+    public AudioClip QuestionPatterns;
     public GameObject PatternsCategory;
     int TotalScore;
     public GameObject ScoreWindow;
@@ -28,6 +30,7 @@ public class PatternsCategorySCR : MonoBehaviour {
     public Text countdown; //UI Text Object
 	// Use this for initialization
 	void Start () {
+        QuestionAudio = GameObject.Find("QuestionAudio").GetComponent<Button>();
         current = PlayerPrefs.GetInt("TotalScore");
         if (keyLog == 0)
         {
@@ -43,7 +46,9 @@ public class PatternsCategorySCR : MonoBehaviour {
             answer = false;
         }
         questions[index[keyLog]].SetActive(true);
-	}
+
+        QuestionAudio.onClick.AddListener(() => questionButton());
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -94,6 +99,12 @@ public class PatternsCategorySCR : MonoBehaviour {
         }
 
     }
+
+    public void questionButton()
+    {
+        SoundFx.PlayOneShot(QuestionPatterns);
+    }
+
     public void YesBTN()
     {
         questions[index[keyLog]].SetActive(false);
