@@ -16,6 +16,9 @@ public class SetsCategorySCR : MonoBehaviour {
     public AudioSource SoundFx;
     public AudioClip CheckTone;
     public AudioClip WrongTone;
+    public Button QuestionAudio;
+    public AudioClip QuestionSetsBigger;
+    public AudioClip QuestionSetsSmaller;
     int[] Quest = { 0, 1 };
     int[] Position = { 1, 2 };
     int count = 0;
@@ -36,6 +39,8 @@ public class SetsCategorySCR : MonoBehaviour {
    public int timeLeft = 10; //Seconds Overall
     public Text countdown; //UI Text Object
 	void Start () {
+        QuestionAudio = GameObject.Find("QuestionAudio").GetComponent<Button>();
+
         bool type = false;
         int[] box = { -370, 130 };
         int boxy1 = 130;
@@ -168,7 +173,8 @@ public class SetsCategorySCR : MonoBehaviour {
         PreObjects1 = values[keyLog];
         PreObjects2 = index[keyLog];
 
-	}
+        QuestionAudio.onClick.AddListener(() => questionButton());
+    }
     IEnumerator LoseTime()  //Timer Function
     {
         while (true)
@@ -255,6 +261,19 @@ public class SetsCategorySCR : MonoBehaviour {
             number++;
         }
 	}
+
+    public void questionButton()
+    {
+        if (Quest[0] == 0)
+        {
+            SoundFx.PlayOneShot(QuestionSetsBigger);
+        }
+        else if (Quest[0] == 1)
+        {
+            SoundFx.PlayOneShot(QuestionSetsSmaller);
+        }
+    }
+
     public void next()
     {
       

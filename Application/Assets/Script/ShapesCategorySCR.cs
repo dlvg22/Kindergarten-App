@@ -36,10 +36,16 @@ public class ShapesCategorySCR : MonoBehaviour {
     public AudioSource SoundFx;
     public AudioClip CheckTone;
     public AudioClip WrongTone;
+    public Button QuestionAudio;
+    public AudioClip QuestionShapesCircle;
+    public AudioClip QuestionShapesSquare;
+    public AudioClip QuestionShapesRectangle;
+    public AudioClip QuestionShapesTriangle;
+    public AudioClip QuestionShapesOblong;
 
-	void Start () {
-      
-        
+    void Start () {
+        QuestionAudio = GameObject.Find("QuestionAudio").GetComponent<Button>();
+
         if (Quest1 == false)
         {
             QuestionIndex = randomPos(QuestionIndex);//questions index
@@ -98,7 +104,9 @@ public class ShapesCategorySCR : MonoBehaviour {
             Temp5 = new Vector3(Positions[4], 8, 0);
             Triangle[TriangleIndex[keyLog]].transform.localPosition = Temp5;
             Triangle[TriangleIndex[keyLog]].SetActive(true);
-	}
+
+        QuestionAudio.onClick.AddListener(() => questionButton());
+    }
 
     IEnumerator LoseTime()
     {
@@ -121,6 +129,28 @@ public class ShapesCategorySCR : MonoBehaviour {
         return array;
     }
 
+    public void questionButton()
+    {
+        if (QuestionIndex[keyLog] == 0) {
+            SoundFx.PlayOneShot(QuestionShapesCircle);
+        }
+        else if (QuestionIndex[keyLog] == 1)
+        {
+            SoundFx.PlayOneShot(QuestionShapesOblong);
+        }
+        else if (QuestionIndex[keyLog] == 2)
+        {
+            SoundFx.PlayOneShot(QuestionShapesRectangle);
+        }
+        else if (QuestionIndex[keyLog] == 3)
+        {
+            SoundFx.PlayOneShot(QuestionShapesSquare);
+        }
+        else if (QuestionIndex[keyLog] == 4)
+        {
+            SoundFx.PlayOneShot(QuestionShapesTriangle);
+        }
+    }
 
     public void CircleBTNS()
     {
